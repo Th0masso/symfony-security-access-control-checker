@@ -1,0 +1,1 @@
+# symfony-access-control-script
