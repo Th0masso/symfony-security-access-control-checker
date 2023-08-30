@@ -20,5 +20,5 @@ For a route to pass the check, the function called in the controller must have t
 
 ### add routes to ignore
 To add routes to ignore open `check-routes-security.php`, and change th following arrays :
-- EXCLUDE_ALL_ROUTES_THAT_START_WITH : excule all routes withing the path
+- EXCLUDE_ALL_ROUTES_THAT_START_WITH : excule all routes within the path
 - EXCLUDE_FULL_ROUTES : exclude sepcific route
