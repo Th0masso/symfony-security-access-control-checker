@@ -257,8 +257,11 @@ class AccessControlCheckerCommand extends Command
      */
     private function isRouteExcluded(string $route, array $excludeAllRoutesThatStartWith, array $excludeFullRoutes): bool
     {
+        if (\in_array($route, $excludeFullRoutes, true)) {
+            return true;
+        }
         foreach ($excludeAllRoutesThatStartWith as $exclude) {
-            if (0 === strncmp($route, $exclude, mb_strlen($exclude)) || \in_array($route, $excludeFullRoutes, true)) {
+            if (0 === strncmp($route, $exclude, mb_strlen($exclude))) {
                 return true;
             }
         }
