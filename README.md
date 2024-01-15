@@ -6,6 +6,12 @@ The bundle will check if certain functions are called on the first line of the c
 
  You can learn more about [how to ensure that all the routes on my Symfony app have access control with this article](https://blog.theodo.com/2023/10/ensure-that-symfony-routes-have-access-control/).
 
+## Table of contents
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Example](#example)
+
 # Installation
 
 ```bash
@@ -50,3 +56,8 @@ If the value is not specified, the default value is `ssacc-config.yaml` (root of
 ```bash
 php bin/console security:check-access-control myConfigDir/my-config-file.yaml
 ```
+
+# Example
+![Example](image/ssacc-example.png)
+
+_TODO: add the example code to this repo._
