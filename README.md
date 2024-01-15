@@ -49,9 +49,9 @@ The default config path is `./ssacc-config.yaml`, but you can change it in the n
 
 # Usage
 
-The only (optional) argument is the relative path to the config file you created in the previous step.
+The only argument is the relative path to the config file you created in the previous step.
 
-If the value is not specified, the default value is `ssacc-config.yaml` (root of your project).
+It is optional and the default value is `ssacc-config.yaml` (root of your project).
 
 ```bash
 php bin/console security:check-access-control myConfigDir/my-config-file.yaml
