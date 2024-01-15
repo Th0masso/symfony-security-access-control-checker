@@ -1,6 +1,6 @@
 {
   "name": "th0masso/ssacc-bundle",
-  "description": "Access Control Checker Easy Neat Thorough",
+  "description": "Symfony Security Access Control Checker",
   "type": "symfony-bundle",
   "keywords": [
     "security",
