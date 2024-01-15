@@ -1,28 +1,52 @@
 # SSACC - Symfony Security Access Control Checker
 
-SSACC is a Symfony bundle that checks the access control for each route of your application.
+SSACC is a Symfony bundle that list all your project's routes that do not have permission checks.
 
-## 🚧 Work in progress 🚧
+The bundle will check if certain functions are called on the first line of the controller's action.
 
-Allows listing all project routes that do not have permission checks.
-For a route to pass the check, the function called in the controller must have the following in its first line:
- `!$this->isGranted` or `$this->denyAccessUnlessGranted`.
- You can learn more about [how to ensure that all the routes on my Symfony app have access control with this article]().
+ You can learn more about [how to ensure that all the routes on my Symfony app have access control with this article](https://blog.theodo.com/2023/10/ensure-that-symfony-routes-have-access-control/).
 
-## get started
-1. Copy the file `check-routes-security.php` into your symfony project
-2. Open the file and change those variables if needed :
-   - `PROJECT_PATH`
-   - `CONTROLLERS_PATH`
-3. Run the script with :
+# Installation
+
 ```bash
-> php check-routes-security.php
+composer require --dev ssacc/ssacc-bundle
 ```
-(might take 1-5 minutes if you have hundreds of routes)  
 
-4. Check which routes have no access control
+# Configuration
 
-### add routes to ignore
-To add routes to ignore open `check-routes-security.php`, and change th following arrays :
-- EXCLUDE_ALL_ROUTES_THAT_START_WITH : excule all routes within the path
-- EXCLUDE_FULL_ROUTES : exclude sepcific route
+You should create a config file like this one:
+```yaml
+ssacc-config:
+  project_path: "./"
+  controllers_path: "src/"
+  exclude_all_routes_that_start_with:
+    - "web_profiler"
+    - "twig"
+  exclude_full_routes:
+    - "error_controller::preview"
+  security_requirement:
+    - "$this->denyAccessUnlessGranted"
+    - "!$this->isGranted"
+```
+Those are the default values, you can change them as you wish.
+
+You can use `ssacc-config.dist.yaml` as a template.
+
+The default config path is `./ssacc-config.yaml`, but you can change it in the next step.
+
+## Description of the options
+- `project_path`: The path to the root of your project.
+- `controllers_path`: The path to the controllers directory.
+- `exclude_all_routes_that_start_with`: An array of strings. All routes that start with any of those strings will be excluded.
+- `exclude_full_routes`: An array of strings. All routes that match any of those strings will be excluded.
+- `security_requirement`: An array of strings. All routes functions that do not have any of those strings on the first line of the controller's action will be listed.
+
+# Usage
+
+The only (optional) argument is the relative path to the config file you created in the previous step.
+
+If the value is not specified, the default value is `ssacc-config.yaml` (root of your project).
+
+```bash
+php bin/console security:check-access-control myConfigDir/my-config-file.yaml
+```
