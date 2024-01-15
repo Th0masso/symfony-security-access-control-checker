@@ -1,24 +1,20 @@
-# symfony-access-control-script
+# SSACC - Symfony Security Access Control Checker
 
-Allows listing all project routes that do not have permission checks.
-For a route to pass the check, the function called in the controller must have the following in its first line:
- `!$this->isGranted` or `$this->denyAccessUnlessGranted`.
- You can learn more about [how to ensure that all the routes on my Symfony app have access control with this article]().
+SSACC is a Symfony bundle that checks the access control for each route of your application.
 
-## get started
-1. Copy the file `check-routes-security.php` into your symfony project
-2. Open the file and change those variables if needed :
-   - `PROJECT_PATH`
-   - `CONTROLLERS_PATH`
-3. Run the script with :
+## Installation
+
+### Require the bundle
+
 ```bash
-> php check-routes-security.php
+composer require --dev theodo/accent-bundle
 ```
-(might take 1-5 minutes if you have hundreds of routes)  
 
-4. Check which routes have no access control
+## Configuration and usage
 
-### add routes to ignore
-To add routes to ignore open `check-routes-security.php`, and change th following arrays :
-- EXCLUDE_ALL_ROUTES_THAT_START_WITH : excule all routes within the path
-- EXCLUDE_FULL_ROUTES : exclude sepcific route
+1. Create a config file in your project directory (e.g. `ssacc-config.yaml`)
+2. You can copy the [default config file](./ssacc-config.example.yaml) and adapt it to your needs
+3. run the command with the `--configFile` option, followed by the path to your config file
+```bash
+bin/console security:check-access-control --configFile=ssacc-config.yaml
+```

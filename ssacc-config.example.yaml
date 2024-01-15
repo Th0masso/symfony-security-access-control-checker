@@ -1,0 +1,11 @@
+ssacc-config:
+  project_path: "./"
+  controllers_path: "src/"
+  exclude_all_routes_that_start_with:
+    - "web_profiler"
+    - "twig"
+  exclude_full_routes:
+    - "error_controller::preview"
+  security_requirement:
+    - "$this->denyAccessUnlessGranted"
+    - "!$this->isGranted"
